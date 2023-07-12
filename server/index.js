@@ -30,11 +30,12 @@ const io = new Server(server, {
 let users = [];
 
 io.on("connection", (socket) => {
-  console.log(`${socket.id} user just connected`);
+  console.log("User connected!");
 
   socket.on("sendMessage", (msg) => {
     // console.log("getMessage", msg);
-    socket.emit("messageResponse", msg);
+    // socket.emit("messageResponse", msg);
+    io.emit("messageResponse", msg);
   });
 
   //whenever new user will be add
@@ -42,7 +43,7 @@ io.on("connection", (socket) => {
     users.push(user);
 
     //send lists of all user to the front end
-    socket.emit("newUserResponse", users);
+    io.emit("newUserResponse", users);
   });
 
   //whenever any user typing
@@ -54,7 +55,7 @@ io.on("connection", (socket) => {
 
     users = users.filter((u) => u.socketID !== socket.id);
 
-    socket.emit("newUserResponse", users);
+    io.emit("newUserResponse", users);
     socket.disconnect();
   });
 });

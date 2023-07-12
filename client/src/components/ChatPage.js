@@ -11,8 +11,12 @@ const ChatPage = () => {
 
   useEffect(() => {
     socket.on("messageResponse", (msg) => {
+      console.log("getMessage", msg);
       setMessages([...messages, msg]);
     });
+    return () => {
+      socket.off("messageResponse");
+    };
   }, [socket, messages]);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
@@ -11,6 +11,8 @@ const ChatBody = ({ messages, lastMessageRef, typingStatus }) => {
   };
 
   console.log("messages", messages);
+
+  // useEffect(() => {}, [messages.length]);
 
   return (
     <>
