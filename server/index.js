@@ -22,7 +22,7 @@ server.listen(process.env.PORT, () => {
 //Make connection with front end
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: process.env.CORS,
   },
 });
 
