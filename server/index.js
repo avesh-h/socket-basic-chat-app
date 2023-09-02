@@ -3,6 +3,7 @@ const cors = require("cors");
 const app = express();
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
+const { errorEvents } = require("./middleware/errLogEvent");
 
 // connect our backend with server
 const http = require("http");
@@ -59,3 +60,5 @@ io.on("connection", (socket) => {
     socket.disconnect();
   });
 });
+
+app.use(errorEvents);
